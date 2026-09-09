@@ -211,6 +211,9 @@ Le PC faisant tourner Laragon agit comme serveur local, et **Ngrok** établit un
      ```cmd
      ngrok http 80
      ```
+     ```cmd
+     C:\laragon\bin\ngrok\ngrok.exe http 80
+     ```
    - L'écran du terminal affiche la session active :
      ```text
      Session Status                online
