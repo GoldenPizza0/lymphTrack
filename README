@@ -1,0 +1,16 @@
+1. Que fait réellement « Import all results » ?
+Dans l'application originale, lors d'une visite de suivi clinique, le praticien prend 18 mesures 
+au total avec le VNA :6 positions anatomiques (3 sur le bras droit, 3 sur le bras gauche). 3 répétitions par position (pour vérifier la reproductibilité 
+de la mesure). Le bouton « Import all results » permet au médecin de ne pas importer les 18 fichiers un par un à la main. Il ouvre un sélecteur de 
+fichiers où l'utilisateur sélectionne d'un coup les 18 fichiers générés par le VNA (ou une archive ZIP / un dossier). Le système :Analyse le nom des 
+fichiers ou leurs métadonnées pour identifier la position (1 à 6) et le numéro de passage (1 à 3).Traite les fichiers un par un (calcul de $f_0$, 
+Min $S_{11}$, BW).Insère les 18 entrées d'un seul coup dans la table results pour la visite concernée.2. Pourquoi le bouton ne fait rien actuellement 
+chez vous ?Dans la vue v_visite.php, ce bouton avait été laissé sous forme de placeholder temporaire :HTML<a href="#" class="btn-import-all" 
+onclick="alert(...); return false;">Import all results</a>
+Tant qu'aucune modal ou formulaire d'upload multiple n'est branché dessus, il reste inactif.3. Comment fonctionne l'ajout automatique de mesures (le 
+calcul des scalaires) ?Quand un fichier VNA brut (contenant la liste des fréquences et les décibels $S_{11}$) est soumis au système, voici l'algorithme 
+qui calcule automatiquement les 3 colonnes de votre base :Fréquence de résonance ($f_0$ - min_frequency_hz) :L'algorithme parcourt les points pour trouver 
+l'indice où la perte de retour $S_{11}$ atteint sa valeur minimale (le creux le plus bas) :$$f_0 = \text{fréquence où } S_{11} \text{ est minimal}$$Creux 
+de résonance (min_return_loss_db) :C'est directement la valeur en dB mesurée à cette fréquence $f_0$ (par exemple $-18.04\text{ dB}$).Bande passante 
+(BW - bandwidth_hz) :Le système prend le creux et remonte de $3\text{ dB}$ (seuil à $-3\text{ dB}$) ou utilise le seuil standard de réflexion à 
+$-10\text{ dB}$. Il repère les deux fréquences $f_1$ (à gauche) et $f_2$ (à droite) coupant ce seuil : BW = f_2 - f_1
