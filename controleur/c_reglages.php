@@ -13,8 +13,8 @@ $isAdmin = in_array(strtoupper($_SESSION['user_type'] ?? ''), ['ADMIN', 'SUPER_A
 switch ($action) {
     case 'afficherReglages':
         $user = $pdo->getUtilisateurById($_SESSION['user_id']);
-        if (empty($user['institution'])) $user['institution'] = 'Uppsala University';
-        if (empty($user['role'])) $user['role'] = ($user['user_type'] === 'ADMIN') ? 'Administrator' : 'Intern';
+        if (empty($user['institution'])) $user['institution'] = 'Not specified';
+        if (empty($user['role']))  $user['role'] = 'Staff Member';
 
         include("vue/v_entete.php");
         include("vue/v_reglages.php");
@@ -111,8 +111,8 @@ switch ($action) {
     
     case 'formulaireModifierMonCompte':
         $user = $pdo->getUtilisateurById($_SESSION['user_id']);
-        if (empty($user['institution'])) $user['institution'] = 'Uppsala University';
-        if (empty($user['role'])) $user['role'] = ($user['user_type'] === 'ADMIN') ? 'Administrator' : 'Intern';
+        if (empty($user['institution'])) $user['institution'] = 'Not specified';
+        if (empty($user['role']))  $user['role'] = 'Staff Member';
 
         include("vue/v_entete.php");
         include("vue/v_modifierCompte.php");

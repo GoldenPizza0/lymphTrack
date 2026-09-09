@@ -56,7 +56,7 @@ $currentType = strtoupper($userAEditer['user_type'] ?? 'USER');
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4A5568" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line></svg>
                 Role <span class="optional-tag">(optional)</span>
             </label>
-            <input type="text" name="role" class="input-rounded-field" placeholder="Enter role (ex: Doctor) ..." value="<?= htmlspecialchars($userAEditer['role'] ?? '') ?>">
+            <input type="text" name="role" class="input-rounded-field" placeholder="Enter role (e.g. Doctor) ..." value="<?= htmlspecialchars($userAEditer['role'] ?? '') ?>">
         </div>
 
         <!-- 5. Institution (optional) -->
@@ -65,7 +65,7 @@ $currentType = strtoupper($userAEditer['user_type'] ?? 'USER');
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4A5568" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="8" y1="10" x2="16" y2="10"></line></svg>
                 Institution <span class="optional-tag">(optional)</span>
             </label>
-            <input type="text" name="institution" class="input-rounded-field" placeholder="Enter institution ..." value="<?= htmlspecialchars($userAEditer['institution'] ?? 'Uppsala University') ?>">
+            <input type="text" name="institution" class="input-rounded-field" placeholder="Enter institution (e.g. University of Example)..." value="<?= htmlspecialchars($userAEditer['institution'] ?? '') ?>">
         </div>
 
         <!-- 6. Access Level selector -->
