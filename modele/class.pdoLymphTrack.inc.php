@@ -54,7 +54,7 @@ class PdoLymphTrack {
      * Crée un nouvel utilisateur
      */
     public function creerUtilisateur($name, $email, $role, $user_type, $institution) {
-        $id = "usr_".$name;
+        $id = "usr_".str_replace(' ', '', mb_strtolower($name));
         $sql = "INSERT INTO users (id, name, email, role, user_type, institution) 
                 VALUES (:id, :name, :email, :role, :user_type, :institution)";
         $stmt = self::$monPdo->prepare($sql);
