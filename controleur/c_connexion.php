@@ -3,6 +3,7 @@ $action = $_REQUEST['action'] ?? 'demandeConnexion';
 
 switch ($action) {
     case 'demandeConnexion':
+        include("vue/v_entete.php");
         include("vue/v_bandeau.php");
         break;
 
